@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 //import admin from "firebase-admin";
-import serviceAccount from "./serviceAccount.json" assert { type: "json" };
+//import serviceAccount from "./serviceAccount.json" assert { type: "json" };
 import { createRequire } from "module";
 
 
