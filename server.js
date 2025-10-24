@@ -5,7 +5,7 @@ import cors from "cors";
 import { createRequire } from "module";
 
 
-const admin = require
+const admin = require("firebase-admin");
 const require = createRequire(import.meta.url);
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT);
 
