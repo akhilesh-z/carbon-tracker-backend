@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from "express";
 import cors from "cors";
 import admin from "firebase-admin";
@@ -7,7 +8,11 @@ import { createRequire } from "module";
 
 //const admin = require("firebase-admin");
 const require = createRequire(import.meta.url);
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT);
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT || '{}');
+
+if (!serviceAccount.private_key) {
+  throw new Error('SERVICE_ACCOUNT env variable not set or invalid!');
+}
 
 const app = express();
 app.use(cors());
