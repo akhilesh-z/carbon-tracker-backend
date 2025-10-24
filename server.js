@@ -4,8 +4,10 @@ import admin from "firebase-admin";
 //import serviceAccount from "./serviceAccount.json" assert { type: "json" };
 import { createRequire } from "module";
 
+
+const admin = require
 const require = createRequire(import.meta.url);
-const serviceAccount = require("./serviceAccount.json");
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT);
 
 const app = express();
 app.use(cors());
