@@ -1,4 +1,6 @@
 import 'dotenv/config';
+//console.log("Loaded SERVICE_ACCOUNT:", process.env.SERVICE_ACCOUNT);
+
 import express from "express";
 import cors from "cors";
 import admin from "firebase-admin";
@@ -7,6 +9,17 @@ import { createRequire } from "module";
 
 
 //const admin = require("firebase-admin");
+//console.log(process.env.SERVICE_ACCOUNT);
+//const rawServiceAccount = JSON.parse(process.env.SERVICE_ACCOUNT);
+
+const rawServiceAccount = JSON.parse(process.env.SERVICE_ACCOUNT || '{}');
+
+
+if (rawServiceAccount.private_key) {
+  rawServiceAccount.private_key = rawServiceAccount.private_key.replace(/\\n/g, '\n');
+} else {
+  throw new Error('SERVICE_ACCOUNT.private_key missing or invalid');
+}
 const require = createRequire(import.meta.url);
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT || '{}');
 
